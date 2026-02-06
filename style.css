@@ -1,0 +1,483 @@
+/* --- VARIÁVEIS (Identidade Visual SST - Verde Segurança) --- */
+:root {
+    /* Verde Escuro Profissional (Cor Principal) */
+    --primary: #006400;       
+    
+    /* Verde Quase Preto (Detalhes e Títulos) */
+    --secondary: #004d00;     
+    
+    /* Verde Claro Vibrante (Botões e Destaques - cor da segurança) */
+    --accent: #4CAF50;        
+    
+    --text: #333333;          
+    --light-bg: #f4f7f6;      
+    --white: #ffffff;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- RESET BÁSICO --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 100px;
+}
+
+body { font-family: var(--font-main); color: var(--text); line-height: 1.6; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* --- UTILITÁRIOS --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.text-center { text-align: center; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.section-padding { padding: 80px 0; }
+.bg-light { background-color: var(--light-bg); }
+.mt-50 { margin-top: 50px; }
+
+/* --- BOTÕES --- */
+.btn-primary {
+    background-color: var(--accent); /* Verde destaque */
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.btn-primary:hover { background-color: var(--secondary); } /* Escurece no hover */
+
+.btn-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.btn-outline:hover { background-color: var(--white); color: var(--primary); }
+
+/* --- MENU / HEADER --- */
+header { 
+    background: rgba(11, 17, 26, 0.95); 
+    backdrop-filter: blur(10px);        
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 0; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+    border-bottom: 3px solid var(--accent); /* Borda verde */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo img { height: 60px; width: auto; transition: 0.3s; }
+.logo img:hover { transform: scale(1.03); }
+
+.menu { display: flex; align-items: center; gap: 35px; }
+.menu a { 
+    color: rgba(255, 255, 255, 0.85); 
+    font-weight: 500; 
+    font-size: 0.95rem;
+    position: relative;
+    padding: 5px 0;
+}
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+.menu a:hover { color: var(--accent); }
+.menu a:hover::after { width: 100%; }
+
+/* Botão destaque no Menu */
+.menu .btn-nav {
+    background-color: var(--accent) !important;
+    color: var(--white) !important;
+    border: 2px solid var(--accent) !important;
+    padding: 10px 22px !important;
+    border-radius: 6px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.menu .btn-nav:hover {
+    background-color: var(--white) !important;
+    border-color: var(--accent) !important;
+    color: var(--primary) !important;
+    transform: translateY(-2px);
+}
+.menu .btn-nav::after { display: none !important; }
+
+.mobile-menu-icon { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 600px;
+    /* Imagem de fundo industrial/engenharia */
+    background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,50,0,0.9), rgba(0,100,0,0.7)); } /* Gradiente Verde */
+.hero-content { position: relative; z-index: 2; }
+.hero h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+.hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+
+/* --- STATS --- */
+.stats { background-color: var(--accent); padding: 40px 0; margin-top: -50px; position: relative; z-index: 3; }
+.stat-item { text-align: center; color: var(--white); } /* Texto branco no fundo verde */
+.stat-item i { font-size: 2rem; margin-bottom: 10px; color: var(--secondary); }
+.stat-item h3 { font-size: 2rem; font-weight: 800; }
+
+/* --- SOBRE (Novo Estilo: Engenharia & Estrutura) --- */
+.sobre-text { 
+    text-align: left; /* Alinhamento à esquerda é mais moderno e legível que justificado */
+    padding-left: 20px;
+}
+
+.sobre-text-tit { 
+    text-align: left; 
+    color: var(--primary); 
+    margin-bottom: 25px; 
+    font-size: 2.2rem; 
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+}
+
+/* Detalhe sutil abaixo do título */
+.sobre-text-tit::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* NOVO ESTILO DA IMAGEM: Moldura "Dupla Engenharia" */
+.sobre-img {
+    position: relative;
+    padding: 15px; /* Espaço para a moldura aparecer */
+    z-index: 1;
+}
+
+.sobre-img img { 
+    border-radius: 4px; /* Cantos levemente arredondados, mais sérios */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Sombra difusa e suave (mais premium) */
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.5); /* Borda fina interna */
+}
+
+/* Moldura Traseira (Superior Esquerda) - Cor Destaque */
+.sobre-img::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 50%; height: 50%;
+    border-top: 4px solid var(--accent);
+    border-left: 4px solid var(--accent);
+    z-index: 0;
+    transition: 0.4s;
+}
+
+/* Moldura Traseira (Inferior Direita) - Cor Primária */
+.sobre-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 50%; height: 50%;
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+    z-index: 0;
+    transition: 0.4s;
+}
+
+/* Efeito ao passar o mouse na imagem: As molduras se expandem */
+.sobre-img:hover::before,
+.sobre-img:hover::after {
+    width: 95%; height: 95%; /* Elas "abraçam" a imagem */
+}
+
+/* Subtítulo (Quem é a Prof...) */
+.sobre-text h6 { 
+    color: var(--secondary); 
+    letter-spacing: 3px; 
+    font-weight: 700; 
+    margin-bottom: 15px; 
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Linha decorativa ao lado do H6 */
+.sobre-text h6::before {
+    content: ''; width: 20px; height: 2px; background: var(--accent);
+}
+
+/* NOVO ESTILO DA LISTA: Cards de Check */
+.lista-check {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-check li { 
+    font-weight: 600; 
+    color: var(--text);
+    background: var(--light-bg); /* Fundo cinza/branco suave */
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--accent); /* Barrinha verde na lateral */
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.lista-check li:hover {
+    transform: translateX(5px); /* Move levemente para a direita ao passar o mouse */
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.lista-check i { 
+    color: var(--primary); /* Ícone escuro para contraste */
+    margin-right: 15px; 
+    font-size: 1.1rem;
+}
+
+/* Botão Link */
+.btn-text { 
+    color: var(--primary); 
+    font-weight: 800; 
+    margin-top: 30px; 
+    display: inline-flex; 
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+.btn-text:hover {
+    color: var(--secondary);
+    border-bottom-color: var(--accent);
+    gap: 15px; /* Aumenta o espaço da setinha no hover */
+}
+.btn-text i { font-size: 0.9rem; transition: transform 0.3s ease; }
+/* --- SERVIÇOS (Novo Estilo: Tech Grid / Dashboard) --- */
+.divider { 
+    width: 80px; height: 4px; 
+    background: var(--accent); 
+    margin: 20px auto; 
+    border-radius: 0; /* Reto, mais técnico */
+}
+
+/* Container do Card */
+.card-servico {
+    background: var(--white);
+    padding: 40px 35px;
+    border-radius: 8px; /* Cantos menos arredondados, mais sérios */
+    border: 1px solid rgba(0,0,0,0.05); /* Borda sutil */
+    text-align: left; /* A GRANDE MUDANÇA: Alinhamento à esquerda */
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Sombra e Movimento no Hover */
+.card-servico:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(49, 64, 27, 0.12); /* Sombra na cor Primary */
+    border-color: transparent;
+}
+
+/* A Linha "Energia" (Barra inferior que acende) */
+.card-servico::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; 
+    width: 100%; height: 6px;
+    background: var(--primary); /* Começa escuro */
+    transform: scaleX(0); /* Escondido */
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    border-radius: 0 0 8px 8px;
+}
+
+.card-servico:hover::after { 
+    transform: scaleX(1); 
+    background: var(--accent); /* Vira verde neon no hover */
+    transform-origin: left;
+}
+
+/* Ícone (Estilo Técnico) */
+.icon-box { 
+    width: auto; height: auto; margin: 0 0 25px 0; /* Margem apenas embaixo */
+    background: transparent; /* Sem bolinha de fundo */
+    border: none;
+    border-radius: 0;
+    display: block;
+    font-size: 2.8rem; /* Ícone Grande */
+    color: var(--primary); /* Cor escura */
+    transition: all 0.4s ease;
+    opacity: 0.8;
+}
+
+.card-servico:hover .icon-box { 
+    color: var(--accent-hover); /* Ícone brilha no hover */
+    transform: scale(1.1) translateX(5px);
+    opacity: 1;
+    box-shadow: none; /* Remove sombras antigas */
+}
+
+/* Títulos e Textos */
+.card-servico h3 { 
+    font-size: 1.4rem; 
+    font-weight: 800; 
+    margin-bottom: 15px; 
+    color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+.card-servico p { 
+    font-size: 1rem; 
+    color: #666; 
+    line-height: 1.7; 
+    margin-bottom: 25px;
+}
+
+/* Botão Link (Seta Técnica) */
+.card-servico .btn-text {
+    margin-top: auto; /* Empurra para o final do card */
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none; /* Remove borda antiga se houver */
+    padding: 0;
+}
+
+.card-servico .btn-text i {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    background: rgba(189, 242, 109, 0.3); /* Fundo sutil na setinha */
+    padding: 6px;
+    border-radius: 50%;
+    color: var(--primary);
+}
+
+.card-servico:hover .btn-text { color: var(--primary); }
+.card-servico:hover .btn-text i {
+    transform: translateX(5px); /* Seta anda para o lado */
+    background: var(--accent); /* Fundo da seta fica neon */
+}
+
+
+/* --- CTA BANNER (Ajuste para combinar) --- */
+.cta-banner { 
+    background-color: var(--primary); 
+    padding: 80px 0; 
+    color: var(--white);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.btn-white { 
+    background: var(--accent); /* Botão Neon */
+    color: var(--white); /* Texto Escuro */
+    padding: 15px 40px; 
+    border-radius: 4px; 
+    font-weight: 800; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.btn-white:hover {
+    background: var(--white);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* --- CONTATO & FORM --- */
+.contato-info h2 { color: var(--secondary); margin-bottom: 15px; }
+.info-item { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+.icon-box-small {
+    width: 50px; height: 50px; background-color: var(--white);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex-shrink: 0;
+}
+.icon-box-small i { font-size: 1.2rem; color: var(--accent); }
+.link-contato { color: inherit; font-weight: 500; transition: 0.3s; }
+.link-contato:hover { color: var(--accent); }
+
+.form-corp { background: var(--white); padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.form-group { margin-bottom: 20px; }
+.form-corp input, .form-corp select, .form-corp textarea {
+    width: 100%; padding: 15px; border: 1px solid #e1e1e1; border-radius: 5px;
+    font-family: inherit; font-size: 1rem; background-color: #f9f9f9; transition: 0.3s; color: var(--text);
+}
+.form-corp input:focus, .form-corp textarea:focus {
+    outline: none; border-color: var(--accent); background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+}
+.form-corp button { width: 100%; border: none; cursor: pointer; font-size: 1rem; margin-top: 10px; }
+
+/* --- FOOTER --- */
+footer { background: #111; color: #aaa; padding-top: 20px; }
+.footer-content { display: flex; justify-content: center; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #333; }
+.social-links a { font-size: 1.5rem; color: var(--white); margin-left: 20px; }
+.social-links a:hover { color: var(--accent); }
+.copy { text-align: center; padding: 15px; font-size: 0.9rem; }
+
+/* --- WHATSAPP FLOAT --- */
+.whatsapp-float {
+    position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff;
+    width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2000;
+}
+.whatsapp-float:hover { background: #1da851; transform: scale(1.1); }
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .mobile-menu-icon { display: block !important; }
+    .menu {
+        display: none; flex-direction: column; position: absolute; top: 100%; left: 0;
+        width: 100%; background: rgba(11, 17, 26, 0.98); padding: 30px; gap: 20px;
+        text-align: center; border-bottom: 3px solid var(--accent);
+    }
+    .menu.active { display: flex; animation: slideDown 0.3s ease-out; }
+    .menu a { font-size: 1.1rem; display: block; width: 100%; }
+    .menu .btn-nav { width: 100%; margin-top: 10px; }
+    .hero h2 { font-size: 2.2rem; }
+    .hero p { font-size: 1rem; }
+    .hero-btns { display: flex; flex-direction: column; gap: 15px; }
+    .btn-outline { margin-left: 0; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- SLIDER --- */
+.partners-slider { background: var(--white); padding: 60px 0 40px; overflow: hidden; position: relative; border-bottom: 1px solid #eee; }
+.partners-slider::before, .partners-slider::after {
+    content: ""; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; pointer-events: none;
+}
+.partners-slider::before { left: 0; background: linear-gradient(to right, var(--white), transparent); }
+.partners-slider::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
+.slider-track { display: flex; width: calc(200px * 12); animation: scroll 30s linear infinite; }
+.slide { width: 200px; height: 80px; display: flex; align-items: center; justify-content: center; padding: 0 20px; }
+.slide img { width: 100%; max-height: 60px; object-fit: contain; filter: grayscale(100%); opacity: 0.6; transition: 0.3s; }
+.slide img:hover { filter: grayscale(0%); opacity: 1; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 3)); } }
