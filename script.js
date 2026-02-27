@@ -1,113 +1,57 @@
-/* script.js - Versão Final Otimizada
-   Contém: Menu Mobile, Validação de Form e Rastreamento de ADS 
-*/
+// Função para validar e ENVIAR
+function validarFormulario(event) {
+    // Impede o envio imediato para podermos validar antes
+    if(event) event.preventDefault();
 
-// 1. RASTREAMENTO (Definido fora do DOMContentLoaded para carregar imediatamente)
-window.trackConversion = function(label) {
-    // Verifica se o Google Analytics/Ads (gtag) está carregado
-    if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-            'send_to': 'AW-SEU_CODIGO_ADS', // <--- IMPORTANTE: Confirme se este ID está igual ao do HTML
-            'event_category': 'WhatsApp',
-            'event_label': label
-        });
-        console.log('Google Ads disparado: ' + label);
-    } else {
-        console.log('Tag do Google não detectada (provavelmente bloqueador de anúncios ou ID não configurado).');
+    // 1. Pegar os elementos
+    let nome = document.getElementsByName('name')[0].value;
+    let email = document.getElementsByName('email')[0].value;
+    let mensagem = document.getElementsByName('message')[0].value;
+    let form = document.getElementById('formContato'); 
+
+    // 2. Validação simples
+    if (nome.trim() === "") {
+        alert("Ops! Você esqueceu de digitar seu nome.");
+        return;
     }
+
+    if (email.trim() === "") {
+        alert("Por favor, informe seu e-mail para contato.");
+        return;
+    }
+
+    if (mensagem.trim() === "") {
+        alert("Escreva uma mensagem explicando sua necessidade.");
+        return;
+    }
+
+    // 3. Feedback e ENVIO REAL
+    alert("Tudo certo, " + nome + "! Você será redirecionado para o sistema de envio seguro.");
     
-    // Verifica se o Bing Ads (UET) está carregado
-    if (window.uetq) {
-        window.uetq.push('event', 'WhatsAppClick', {'event_label': label});
-        console.log('Bing Ads disparado: ' + label);
-    }
+    // Dispara o formulário HTML para o FormSubmit
+    form.submit();
 }
 
-// 2. LÓGICA DE INTERFACE (Carrega após o HTML estar pronto)
-document.addEventListener('DOMContentLoaded', () => {
+// Vincula a função ao clique do botão
+document.getElementById('btnEnviar').addEventListener('click', validarFormulario);
 
-    // --- MENU MOBILE ---
-    const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
-    const menu = document.querySelector('.menu');
-    
-    // Verifica se o elemento existe para evitar erros em páginas futuras
-    if (mobileMenuIcon && menu) {
+const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+const menu = document.querySelector('.menu');
+
+mobileMenuIcon.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    // Muda o ícone de barras para um "X" quando aberto
+    const icon = mobileMenuIcon.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-xmark');
+});
+
+// Fecha o menu ao clicar em qualquer link
+document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.remove('active');
         const icon = mobileMenuIcon.querySelector('i');
-
-        mobileMenuIcon.addEventListener('click', () => {
-            menu.classList.toggle('active');
-            
-            // Troca ícone (Hamburguer <-> X)
-            if (menu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Fecha menu ao clicar nos links
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('active');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-xmark');
-            });
-        });
-    }
-
-    // --- VALIDAÇÃO E ENVIO DO FORMULÁRIO ---
-    const btnEnviar = document.getElementById('btnEnviar');
-    
-    if (btnEnviar) {
-        btnEnviar.addEventListener('click', function(event) {
-            event.preventDefault(); // Impede comportamento padrão
-
-            // Seleção dos campos
-            const nomeInput = document.getElementsByName('name')[0];
-            const emailInput = document.getElementsByName('email')[0];
-            const msgInput = document.getElementsByName('message')[0];
-            const form = document.getElementById('formContato'); 
-
-            // Valores limpos (sem espaços extras nas pontas)
-            const nome = nomeInput.value.trim();
-            const email = emailInput.value.trim();
-            const mensagem = msgInput.value.trim();
-
-            // Validações
-            if (nome === "") {
-                alert("Por favor, digite seu nome ou da sua empresa.");
-                nomeInput.focus();
-                return;
-            }
-
-            if (email === "" || !email.includes('@')) {
-                alert("Por favor, informe um e-mail válido.");
-                emailInput.focus();
-                return;
-            }
-
-            if (mensagem === "") {
-                alert("Por favor, escreva como podemos te ajudar.");
-                msgInput.focus();
-                return;
-            }
-
-            // --- DISPARO DE CONVERSÃO DE LEAD (Formulário) ---
-            if (typeof gtag === 'function') {
-                gtag('event', 'generate_lead', {
-                    'event_category': 'Formulario',
-                    'event_label': 'Contato_Site'
-                });
-            }
-
-            // Feedback visual e envio
-            btnEnviar.innerText = "Enviando...";
-            btnEnviar.disabled = true; // Evita clique duplo
-            
-            alert("Obrigado, " + nome + "! Redirecionando para envio seguro...");
-            form.submit();
-        });
-    }
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
+    });
 });
