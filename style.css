@@ -331,7 +331,7 @@ footer {
     padding: 20px 0 10px; /* Preenchimento mínimo */
 } 
 .footer-content { 
-    display: flex; justify-content: space-between; align-items: center; 
+    display: flex; justify-content: center; align-items: center; 
     padding-bottom: 12px; 
     border-bottom: 1px solid rgba(255,255,255,0.05); 
     margin-bottom: 10px;
